@@ -61,5 +61,19 @@ namespace TmSandboxApiTestSuite.Tests
             response.Data.Promotions.Single(p => p.Name == "Gallery").Description
                 .Should().Contain("Good position in category");
         }
+
+        [TestMethod]
+        async public Task GetCategory6327Details_WhenCatalogueIsFalse_ReturnsCorrectDescriptionForEachPromotionsGallery()
+        {
+            // Arrange
+            RestRequest request = new RestRequest(_path);
+
+            // Act
+            RestResponse<CategoryDetails> response = await _client.ExecuteGetAsync<CategoryDetails>(request);
+
+            // Assert
+            response.Data.Promotions.Where(p => p.Name == "Gallery")
+                .Should().OnlyContain(p => p.Description == "Good position in category");
+        }
     }
 }

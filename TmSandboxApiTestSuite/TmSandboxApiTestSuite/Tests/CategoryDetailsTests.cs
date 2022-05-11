@@ -57,7 +57,7 @@ namespace TmSandboxApiTestSuite.Tests
             RestResponse<CategoryDetails> response = await _client.ExecuteGetAsync<CategoryDetails>(request);
 
             // Assert
-            response.Data.Promotions.Count.Should().Be(1);
+            response.Data.Promotions.Where(p => p.Name == "Gallery").Should().HaveCount(1);
             response.Data.Promotions.Single(p => p.Name == "Gallery").Description
                 .Should().Contain("Good position in category");
         }

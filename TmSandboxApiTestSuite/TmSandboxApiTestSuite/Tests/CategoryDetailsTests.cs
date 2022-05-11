@@ -31,5 +31,34 @@ namespace TmSandboxApiTestSuite.Tests
             response.Data.Name
                 .Should().Be("Carbon credits");
         }
+
+        [TestMethod]
+        async public Task GetCategory6327Details_WhenCatalogueIsFalse_ReturnsCorrectCanRelistValue()
+        {
+            // Arrange
+            RestRequest request = new RestRequest(_path);
+
+            // Act
+            RestResponse<CategoryDetails> response = await _client.ExecuteGetAsync<CategoryDetails>(request);
+
+            // Assert
+            response.Data.CanRelist
+               .Should().BeTrue();
+        }
+
+        [TestMethod]
+        async public Task GetCategory6327Details_WhenCatalogueIsFalse_ReturnsCorrectDescriptionForDistinctPromotionsGallery()
+        {
+            // Arrange
+            RestRequest request = new RestRequest(_path);
+
+            // Act
+            RestResponse<CategoryDetails> response = await _client.ExecuteGetAsync<CategoryDetails>(request);
+
+            // Assert
+            response.Data.Promotions.Count.Should().Be(1);
+            response.Data.Promotions.Single(p => p.Name == "Gallery").Description
+                .Should().Contain("Good position in category");
+        }
     }
 }

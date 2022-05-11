@@ -1,6 +1,7 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestSharp;
+using TmSandboxApiTestSuite.Configuration;
 using TmSandboxApiTestSuite.Model;
 
 namespace TmSandboxApiTestSuite.Tests
@@ -14,8 +15,8 @@ namespace TmSandboxApiTestSuite.Tests
         [TestInitialize]
         public void SetUp()
         {
-            var basePath = "https://api.tmsandbox.co.nz";
-            _client = new RestClient(basePath);
+            var config = new AppConfiguration();
+            _client = new RestClient(config.BaseUrl);
         }
 
         [TestMethod]

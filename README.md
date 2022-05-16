@@ -12,6 +12,11 @@ https://api.tmsandbox.co.nz/v1/Categories/6327/Details.json?catalogue=false
 ### Prerequisites
 .NET 6.0
 
+### Running tests
+There are multiple ways to execute tests:
+* Run all tests through a CLI with the command `dotnet test`. To run specific tests, use the `dotnet test --filter <EXPRESSION>` command, for example `dotnet test --filter Name~GetCategory6327Details_WhenCatalogueIsFalse_ReturnsCorrectName`. See Microsoft docs for details - https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test.
+* Run test through the Visual Studio's Test Explorer.
+
 ### Notes
 Tests are meant to check only the acceptance criteria.
 
